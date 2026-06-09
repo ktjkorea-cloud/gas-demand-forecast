@@ -11,7 +11,7 @@ import io
 st.set_page_config(page_title="산업용 도시가스 수요량 예측", page_icon="🏭", layout="wide")
 
 # ── 업종 목록 ─────────────────────────────────────────────────────
-INDUSTRIES = ["철강·금속", "화학·석유", "식품·제조", "섬유·의류", "기타 산업"]
+INDUSTRIES = ["철강", "화학", "식품", "섬유", "기타 산업"]
 MENU = INDUSTRIES + ["📊 전체 합계"]
 
 ORIGIN_DATE = pd.Timestamp("2023-01-01")
