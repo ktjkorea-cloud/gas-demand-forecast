@@ -11,7 +11,7 @@ import io
 REGIONS = ["안동", "영주", "예천", "봉화", "의성", "군위"]
 MENU = REGIONS + ["📊 전체 합계"]
 
-st.set_page_config(page_title="도시가스 수요량 예측", page_icon="🔥", layout="wide")
+st.set_page_config(page_title="대성청정에너지 도시가스 수요량 예측", page_icon="🔥", layout="wide")
 
 st.markdown("""
 <style>
@@ -21,23 +21,28 @@ st.markdown("""
     max-width: 260px;
 }
 
-/* 라디오 버튼 각 항목을 버튼처럼 크게 */
+/* 라디오 버튼 목록 */
+[data-testid="stSidebar"] .stRadio {
+    margin-top: -40px;
+}
 [data-testid="stSidebar"] .stRadio > div {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0px;
 }
 [data-testid="stSidebar"] .stRadio label {
     display: flex !important;
     align-items: center;
-    padding: 10px 16px !important;
-    font-size: 28px !important;
+    padding: 10px 14px !important;
+    font-size: 2rem !important;
     font-weight: 600 !important;
+    color: rgb(49, 51, 63) !important;
     border-radius: 10px;
     cursor: pointer;
     border: 2px solid transparent;
     transition: background 0.2s, border 0.2s;
-    line-height: 1.4 !important;
+    line-height: 1 !important;
+    min-height: 52px;
 }
 [data-testid="stSidebar"] .stRadio label:hover {
     background: rgba(255, 107, 53, 0.12);
@@ -46,7 +51,7 @@ st.markdown("""
 [data-testid="stSidebar"] .stRadio label:has(input:checked) {
     background: rgba(255, 107, 53, 0.18);
     border: 2px solid #FF6B35;
-    color: #FF6B35;
+    color: #FF6B35 !important;
 }
 /* 라디오 원형 아이콘 숨기기 */
 [data-testid="stSidebar"] .stRadio input[type="radio"] {
@@ -66,12 +71,33 @@ for r in REGIONS:
 
 # ── 사이드바: 지역 선택 ───────────────────────────────────────────
 with st.sidebar:
-    st.title("🔥 도시가스 예측")
-    st.markdown("---")
+    st.markdown("""
+    <div style="
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+        border-radius: 12px;
+        padding: 20px 14px;
+        margin-bottom: 8px;
+        text-align: center;
+        border: 1px solid rgba(255,107,53,0.3);
+        box-shadow: 0 4px 15px rgba(255,107,53,0.15);
+    ">
+        <img src="https://www.daesungcleanenergy.co.kr/images/common/ci.svg"
+             style="width:75%; max-width:160px; filter: brightness(0) invert(1);"
+             onerror="this.style.display='none'">
+        <div style="
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: 700;
+            margin-top: 8px;
+            opacity: 0.85;
+        ">도시가스<br>수요량 예측</div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.markdown("<p style='font-size:1.1rem; font-weight:700; margin:0; padding:0;'>🗺️ 지역 선택</p>", unsafe_allow_html=True)
     selected = st.radio(
         "지역 선택",
         MENU,
-        label_visibility="collapsed"
+        label_visibility="hidden"
     )
 
 # ── 공통 함수 ─────────────────────────────────────────────────────
@@ -156,8 +182,25 @@ def make_sample(region):
 
 # ── 지역 페이지 ───────────────────────────────────────────────────
 def page_region(region):
-    st.title(f"🏙️ {region} 도시가스 수요량 예측")
-    st.markdown("---")
+    st.markdown(f"""
+    <div style="
+        background: linear-gradient(135deg, #56CCF2 0%, #2F80ED 100%);
+        border-radius: 14px;
+        padding: 18px 24px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 20px rgba(47,128,237,0.3);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    ">
+        <img src="https://www.daesungcleanenergy.co.kr/images/common/ci.svg"
+             style="height:33px; filter: brightness(0) invert(1); display:none;"
+             onload="this.style.display='inline'">
+        <div style="color:#ffffff; font-size:33px; font-weight:800; white-space:nowrap;">
+            {region} 도시가스 수요량 예측
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
     # 사이드바 내 지역별 설정
     with st.sidebar:
@@ -439,8 +482,25 @@ def page_region(region):
 
 # ── 전체 합계 페이지 ──────────────────────────────────────────────
 def page_total():
-    st.title("📊 전체 지역 합계")
-    st.markdown("---")
+    st.markdown("""
+    <div style="
+        background: linear-gradient(135deg, #56CCF2 0%, #2F80ED 100%);
+        border-radius: 14px;
+        padding: 26px 32px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 20px rgba(47,128,237,0.3);
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    ">
+        <img src="https://www.daesungcleanenergy.co.kr/images/common/ci.svg"
+             style="height:33px; filter: brightness(0) invert(1); display:none;"
+             onload="this.style.display='inline'">
+        <div style="color:#ffffff; font-size:33px; font-weight:800; white-space:nowrap;">
+            전체 지역 도시가스 수요량 예측
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
     # 데이터가 있는 지역 수집
     loaded = {r: st.session_state[f"df_{r}"] for r in REGIONS
