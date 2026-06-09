@@ -237,10 +237,6 @@ def page_region(region):
             st.session_state[f"df_{region}"] = load_uploaded(uploaded)
             st.success("업로드 완료!")
 
-        if st.button("샘플 데이터 사용", key=f"sample_{region}",
-                     use_container_width=True):
-            st.session_state[f"df_{region}"] = make_sample(region)
-            st.success("샘플 데이터 로드!")
 
     df = st.session_state[f"df_{region}"]
     if df is None:

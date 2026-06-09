@@ -11,7 +11,7 @@ import io
 st.set_page_config(page_title="산업용 도시가스 수요량 예측", page_icon="🏭", layout="wide")
 
 # ── 업종 목록 ─────────────────────────────────────────────────────
-INDUSTRIES = ["철강", "화학", "식품", "섬유", "기타 산업"]
+INDUSTRIES = ["철강·금속", "화학·석유", "식품·제조", "섬유·의류", "기타 산업"]
 MENU = INDUSTRIES + ["📊 전체 합계"]
 
 ORIGIN_DATE = pd.Timestamp("2023-01-01")
@@ -173,10 +173,6 @@ def page_industry(industry):
         if uploaded:
             st.session_state[f"ind_df_{industry}"] = load_uploaded(uploaded)
             st.success("업로드 완료!")
-        if st.button("샘플 데이터 사용", key=f"ind_sample_{industry}",
-                     use_container_width=True):
-            st.session_state[f"ind_df_{industry}"] = make_sample(industry)
-            st.success("샘플 데이터 로드!")
 
     df = st.session_state[f"ind_df_{industry}"]
     if df is None:
