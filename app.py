@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, r2_score
 import io
 
-REGIONS = ["안동", "영주", "군위", "의성", "예천", "봉화"]
+REGIONS = ["안동", "영주", "예천", "봉화", "의성", "군위"]
 MENU = REGIONS + ["📊 전체 합계"]
 
 st.set_page_config(page_title="도시가스 수요량 예측", page_icon="🔥", layout="wide")
