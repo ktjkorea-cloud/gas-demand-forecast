@@ -205,7 +205,7 @@ def page_region(region):
     # 사이드바 내 지역별 설정
     with st.sidebar:
         st.markdown(f"### ⚙️ {region} 설정")
-        forecast_days = st.slider("예측 기간 (일)", 7, 90,
+        forecast_days = st.slider("예측 기간 (일)", 7, 360,
                                    st.session_state[f"cfg_{region}"]["forecast_days"], 7,
                                    key=f"fd_{region}")
         n_estimators  = st.slider("모델 복잡도", 50, 300,
